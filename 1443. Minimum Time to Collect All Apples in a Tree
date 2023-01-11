@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int fans=0;
+    bool dfs(int i,vector<int>adj[],vector<bool>&hasapple,vector<int>&vis)
+    {
+        // cout<<i<<endl;
+        vis[i]=1;
+        bool ans=hasapple[i];
+        vector<int>::iterator itr;
+        for(itr=adj[i].begin();itr!=adj[i].end();itr++)
+        {
+            if(!vis[*itr])
+            {
+                bool x=dfs(*itr,adj,hasapple,vis);
+                ans=ans||x;
+            }
+        }
+        if(ans==true&&i!=0)
+        {
+            fans+=2;
+        }
+        // cout<<i<<" "<<ans<<" "<<fans<<endl;
+        return ans;
+    }
+    int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) 
+    {
+        vector<int>vis(n,0);
+        vector<int>adj[n];
+        for(int i=0;i<edges.size();i++)
+        {
+            adj[edges[i][0]].push_back(edges[i][1]);
+            adj[edges[i][1]].push_back(edges[i][0]);
+        }
+        dfs(0,adj,hasApple,vis);
+        return fans;
+    }
+};
