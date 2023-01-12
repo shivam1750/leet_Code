@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>>adj;
+    vector<bool>seen;
+    vector<int>ans;
+    vector<int> countSubTrees(int n, vector<vector<int>>& edges, string labels) {
+        adj=vector<vector<int>>(n);
+        seen=vector<bool>(n,false);
+        ans=vector<int>(n);
+        for(int i=0;i<edges.size();i++)
+        {
+         adj[edges[i][0]].push_back(edges[i][1]);
+         adj[edges[i][1]].push_back(edges[i][0]);  
+        }
+        traversal(0,labels);
+        return ans;
+    }
+    vector<int> traversal(int u,string &labels)
+    {
+        vector<int>output(26,0);
+        seen[u]=true;
+        for(auto v:adj[u])
+       {
+         if(seen[v]==false)
+         {
+             vector<int>result=(traversal(v,labels));
+           for(int i=0;i<26;i++)
+           {
+               output[i]+=result[i];
+           }
+         }
+       }
+        ans[u]=++output[labels[u]-97];
+        return output;   
+    }
+};
