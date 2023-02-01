@@ -1,0 +1,17 @@
+string ans = "";
+        int i = 0, j = 0, n = s.size();
+        while(j <= n){
+            if(j == n || s[j] == ' '){
+                int k = j;
+                --j;
+                while(i < j){
+                    swap(s[i], s[j]);
+                    ++i;
+                    --j;
+                }
+                j = k;
+                i = j+1;
+            }
+            ++j;            
+        }
+        return s;
