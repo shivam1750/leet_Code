@@ -31,10 +31,8 @@ public:
                  
                 else res = "0" + res;
                  
-             }
-             
-        }
-        
+             }    
+        }  
         if(carry == 1) res = "1" + res;
         
         return res;
