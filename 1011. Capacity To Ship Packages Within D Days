@@ -1,0 +1,72 @@
+class Solution {
+public:
+    // function for finding req_days if we take mid as least weight capacity
+    bool is_possible(vector<int>& weights, int mid, int days)
+    {
+        int n = weights.size();
+        int req_days = 1;
+        int curr_weight = 0;
+        for(int i = 0; i < n; i++)
+        {
+            if(curr_weight + weights[i] <= mid)
+            {
+                curr_weight += weights[i];
+            }
+            
+            // if inclusion of curr. weight will exceed the mid value
+            
+            else
+            {
+                req_days++;
+                
+                curr_weight = weights[i];
+            }
+        }
+        
+        return req_days <= days;
+    }
+    
+    int shipWithinDays(vector<int>& weights, int days) {
+        
+        int n = weights.size();
+        
+        // low will be = max. value of elements of array
+        
+        int low = *max_element(weights.begin(), weights.end());
+        
+        // high will be = sum of whole array
+        
+        int high = 0;
+        
+        for(int i = 0; i < n; i++)
+        {
+            high += weights[i];
+        }
+        
+        // apply binary search and find the least weight capacity
+        
+        int mini = low;
+        
+        while(low <= high)
+        {
+            // find mid
+            
+            int mid = low + (high - low) / 2;
+            
+            // check if it is possible to check mid as least weight capacity
+            
+            if(is_possible(weights, mid, days))
+            {
+                mini = mid;
+                
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        
+        return  mini;
+    }
+};
