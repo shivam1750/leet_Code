@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int max_value = nums[0];
+        int curr_value= nums[0];
+
+        for(int i =1 ; i<nums.size();i++){
+            curr_value = max(nums[i],curr_value+nums[i]);
+            max_value=max(max_value,curr_value);
+        }
+        return max_value ; 
+    }
+};
