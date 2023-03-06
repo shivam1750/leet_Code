@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        // 01 -- brust force
+        // int n= nums.size();
+        // for(int x : nums){
+        //     if(x <= k){
+        //         k++;
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }
+        // return k;
+
+        // 02
+        sort(nums.begin(),nums.end(),greater<>());
+        for(auto x : nums){
+            cout<<x<<" ";
+        }
+
+        int p = nums.at(k-1);
+    return p ;
+    }
+};
