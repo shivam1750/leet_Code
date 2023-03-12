@@ -5,8 +5,7 @@ public:
         // int n= nums.size();
         // for(int x : nums){
         //     if(x <= k){
-        //         k++;
-        //     }
+        //         k++; }
         //     else{
         //         break;
         //     }
@@ -18,8 +17,8 @@ public:
         for(auto x : nums){
             cout<<x<<" ";
         }
-
-        int p = nums.at(k-1);
+        // int p = nums.at(k-1); // at is an index postion 
+        int p = nums[k-1];
     return p ;
     }
 };
