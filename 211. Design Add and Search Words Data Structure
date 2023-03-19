@@ -1,0 +1,48 @@
+class WordDictionary {
+private:
+    vector<unordered_set<string>> wordSets;
+public:
+    WordDictionary() {
+        wordSets= std::vector<std::unordered_set<string>>(25);
+    }
+    void addWord(string word) {
+        wordSets[word.size()-1].insert(word);
+    }
+    bool search(string word) {
+        bool containsDot=false;
+        if(wordSets[word.size()-1].count(word)){
+            return true;
+        }
+        else{
+            for(int i=0; i<word.size(); i++){
+                if(word[i]=='.'){
+                    containsDot=true;
+                    break;
+                }
+            }
+        }
+        std::unordered_set<string>::iterator i;
+        if(containsDot){
+            for(auto i=wordSets[word.size()-1].begin(); i!=wordSets[word.size()-1].end(); i++){
+                for(int j=0; j<word.size(); j++){
+                    
+                    if(word[j]!= (*i)[j] && word[j]!='.'){
+                        break;
+                    }
+                    else if(j==word.size()-1){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary* obj = new WordDictionary();
+ * obj->addWord(word);
+ * bool param_2 = obj->search(word);
+ */
