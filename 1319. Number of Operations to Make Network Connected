@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+       		if(connections.size()<n-1) return -1;
+		vector<int> v_union(n,-1);
+		for(auto& i:connections){
+			int f{i[0]};
+			int s{i[1]};
+			while(v_union[f]>0){
+				f = v_union[f];
+			}
+			while(v_union[s]>0){
+				s = v_union[s];
+			}
+			if(f==s) continue;
+			if(v_union[f]<v_union[s]){
+				v_union[f] +=v_union[s];
+				v_union[s] = f;
+			}
+			else{
+				v_union[s] +=v_union[f];
+				v_union[f] = s;
+			}
+		}
+    int count =0;
+    for(auto i:v_union){
+        if(i<0) count++;
+    }
+    return count-1;
+
+    }
+};
