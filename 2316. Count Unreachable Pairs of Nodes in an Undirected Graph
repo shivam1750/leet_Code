@@ -1,0 +1,25 @@
+
+class Solution {
+public:
+    vector<int> dis;
+
+    int findd(int i) {
+        return dis[i] < 0 ? i : dis[i] = findd(dis[i]);
+    }
+
+    void unionn(int i, int j) {
+        i = findd(i), j = findd(j);
+        if (i == j) return;
+        if (dis[i] < dis[j]) dis[i] += dis[j], dis[j] = i;
+        else dis[j] += dis[i], dis[i] = j;
+    }
+
+    long long countPairs(int n, vector<vector<int>>& edges) {
+        long long ans = 0;
+        dis.resize(n, -1);
+        for (auto &e : edges) unionn(e[0], e[1]);
+        for (int i = 0; i < n; i++) ans += n + dis[findd(i)];
+
+        return ans / 2;
+    }
+};
