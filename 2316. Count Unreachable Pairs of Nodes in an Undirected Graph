@@ -1,4 +1,5 @@
-// 01 --> best time based approach 
+// 01 --> best time based approach
+
 class Solution {
 public:
     vector<int> dis;
