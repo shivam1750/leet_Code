@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int carry = 1,nums=digits.size()-1;
+        for (int i = nums; i >= 0; --i){
+            digits[i] += carry;
+            carry = digits[i] / 10;
+            digits[i] = digits[i] % 10;
+        }
+        if (carry) {
+           digits.insert(digits.begin(), carry);
+        }
+        return digits;
+
+        // int x = 0;
+        // for(int i = 0; i<digits.size(); i++){
+        //     x = x*10 + digits[i];
+        // }
+        // x = x+1;
+        // int j = 1;
+        // while(x > 0){
+        //     int a = x%10;
+        //     if(a == digits[digits.size()-j]){
+        //         break;
+        //     }
+        //     digits[digits.size()-j] = a;
+        //     x = x/10;
+        //     j++;
+        // }
+        // return digits;
+}
+};
