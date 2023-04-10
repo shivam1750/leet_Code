@@ -1,3 +1,27 @@
+// 01 method
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> parens;
+        map<char, int> m = {{'(', 1}, {')', 6}, {'[', 2}, {']', 5}, {'{', 3}, {'}', 4}};
+        for(int i = 0 ; i < s.size(); i++){
+            if(parens.size() == 0 || m[s[i]] < 4) parens.push(s[i]);
+            else{
+                if((m[parens.top()] + m[s[i]]) != 7){
+                    // mismatch
+                    return false;
+                }
+                else{
+                    parens.pop();
+                }
+            }
+        }
+        if(parens.size() != 0) return false;
+        return true;
+
+    }
+};
+//02 method
 class Solution {
 public:
     bool isValid(string s) {
