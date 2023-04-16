@@ -1,0 +1,20 @@
+#define ll long long int
+class Solution {
+public:
+    int mySqrt(int x) {
+        int l=0 , h=x , ans;
+        while(l<=h){
+           ll mid=l+(h-l)/2;
+           ll sq=mid*mid;
+           if(sq==x){
+               ans=mid;
+               break;}
+            else if(sq<x){
+                l=mid+1;}
+            else{
+                h=mid-1;
+        }}
+        return ans;
+        // return sqrt(x);
+    }
+};
