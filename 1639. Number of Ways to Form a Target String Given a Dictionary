@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int numWays(vector<string>& words, string target) 
+{
+	int result=0;
+	int m=words.size();
+	int n=words[0].length();
+	int total[n][26];
+	long d=1000000007;
+	memset(total,0,sizeof(total));
+	for(int i=0;i<m;i++)
+		for(int j=0;j<n;j++)
+			total[j][words[i][j]-'a']++;
+
+	int p=target.length();
+	long dp[p+1];
+	memset(dp,0,sizeof(dp));
+	dp[0]=1;
+	for(int i=0;i<n;i++)
+		for(int j=p-1;j>=0;j--)
+				dp[j+1]=(dp[j+1]+dp[j]*total[i][target[j]-'a'])%d;
+
+	return dp[p];
+}
+
+// // C++ program to demonstrate memset
+// Memset() is a C++ function. It copies a single character for a specified number of times to an object.
+// using namespace std;
+// int main()
+// {
+//     char str[] = "geeksforgeeks";
+//     memset(str, 't', sizeof(str));
+//     cout << str;
+//     return 0;
+// }
+// Output
+// tttttttttttttt
+};
