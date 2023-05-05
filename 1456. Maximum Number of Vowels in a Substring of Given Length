@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool vowels(char letter){
+        if(letter =='a'||  letter =='e'|| letter=='i'||  letter =='o'|| letter =='u'){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    int maxVowels(string s, int k) {
+        int count =0 , res=0 ,i=0,j=0, length = s.size();
+        while(j<length){
+            if(vowels(s[j])==1){
+                count++;
+            }
+            res=max(res,count);
+            j++;
+            if(j-i+1 > k){
+                if(vowels(s[i])==1){
+                    count--;
+                }
+                i++;
+            }
+        }
+        return res; 
+    }
+};
