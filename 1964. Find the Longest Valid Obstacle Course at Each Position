@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> longestObstacleCourseAtEachPosition(vector<int>& obstacles) {
+        int n = obstacles.size();   // 10^5 nlongn    dp problem 
+        vector<int> res(n, 1); // create a vector with starting position index 1 
+        vector<int> v; // create another vector for storing and compairing 
+        for(int i=0; i<n; i++) {
+            int tr = upper_bound(v.begin(),v.end(),obstacles[i]) - v.begin();
+            // upper bound == indbuild functino to which directly caclaute with vector starting index 1
+
+            if(tr == v.size()) // if the upper bound == v.size() append obstacle value into v 
+                v.push_back(obstacles[i]); // append
+
+
+            else 
+                v[tr] = obstacles[i]; // if upper bound index is equal to the obstacle of ith element then equate its 
+            res[i] = tr + 1;    // ans last update res [i] = tr (upper bound ) with plus one 
+        }
+        return res;
+    }
+};
