@@ -8,6 +8,7 @@ public:
                     ans_sum[0]=i;
                     ans_sum[1]=j;
                 }
+                
             }
         }
         return ans_sum;
