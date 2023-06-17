@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int makeArrayIncreasing(vector<int>& arr1, vector<int>& arr2) {
+        sort(arr2.begin(),arr2.end());
+        map<int,int> mlast;
+        mlast[0]=-1;
+        for(int curr:arr1){
+            map<int,int> mcurr;
+            for(auto [op,last]:mlast){
+                auto it=upper_bound(arr2.begin(),arr2.end(),last);
+                if(it!=arr2.end()) mcurr[op+1]=*it;
+            }
+            for(auto [op,last]:mlast){
+                if(last<curr){
+                    if(auto it=mcurr.find(op);it==mcurr.end()){
+                        mcurr[op]=curr;
+                    }
+                    else{
+                        mcurr[op]=min(curr,it->second);
+                    }
+                }
+            }
+            mlast=move(mcurr);
+        }
+        return mlast.empty() ? -1 : mlast.begin()->first;
+    }
+};
