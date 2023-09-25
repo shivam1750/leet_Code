@@ -1,4 +1,5 @@
 class Solution {
+
 public:
     bool check(TreeNode *root1, TreeNode *root2){
         if(root1==nullptr && root2==nullptr)
